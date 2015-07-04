@@ -1,7 +1,7 @@
-ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
+ACLOCAL_AMFLAGS = -I m4 -I libgd ${ACLOCAL_FLAGS}
 DISTCHECK_CONFIGURE_FLAGS = --disable-dogtail
 
-SUBDIRS = po data src tests
+SUBDIRS = po libgd data src tests
 
 MAINTAINERCLEANFILES = \
 	$(srcdir)/INSTALL \

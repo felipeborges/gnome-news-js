@@ -1,6 +1,6 @@
 [type: gettext/glade]data/app-menu.ui
 [type: gettext/glade]data/main.ui
-data/com.example.Gtk.JSApplication.desktop.in
-data/com.example.Gtk.JSApplication.appdata.xml.in
-data/com.example.Gtk.JSApplication.gschema.xml
+data/org.gnome.News.desktop.in
+data/org.gnome.News.appdata.xml.in
+data/org.gnome.News.gschema.xml
 src/main.js

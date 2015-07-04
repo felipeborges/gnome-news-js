@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>org.gnome.News.desktop</id>
+  <licence>CC0</licence>
+  <_name>News</_name>
+  <description>
+    <_p>
+      A feed reader applicatin for GNOME.
+    </_p>
+  </description>
+  <screenshots>
+    <screenshot type="default" width="1024" height="768">https://www.example.com/gtk-js-app/screenshots/large.png</screenshot>
+  </screenshots>
+  <url type="homepage">https://wiki.gnome.org/Design/Apps/Potential/News</url>
+  <updatecontact>felipeborges_at_gnome.org</updatecontact>
+</component>

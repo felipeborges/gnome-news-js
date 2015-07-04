@@ -5,7 +5,11 @@
     <property name="can_focus">False</property>
     <property name="visible">True</property>
     <property name="show-close-button">True</property>
-    <property name="title" translatable="yes">Current page</property>
+    <child type="title">
+      <object class="GtkStackSwitcher" id="stack-switcher">
+        <property name="visible">True</property>
+      </object>
+    </child>
     <child>
       <object class="GtkToggleButton" id="search-active-button">
         <property name="can_focus">True</property>

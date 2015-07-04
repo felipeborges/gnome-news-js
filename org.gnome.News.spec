@@ -1,15 +1,15 @@
 Name:		%{_name}
 Version:	%{_version}
 Release:	1%{?dist}
-Summary:	JS Application
+Summary:    News
 
-License:	BSD
-URL:		http://www.example.com/gtk-js-app
+License:	GPLv2
+URL:	    https://wiki.gnome.org/Design/Apps/Potential/News
 Source0:        %{_distdir}-%{version}.tar.xz
 BuildArch:      noarch
 
 %description
-Demo JS Application and template
+A GNOME 3 Feed Reader.
 
 %prep
 %setup -q -n %{_distdir}-%{version}

@@ -1,0 +1,11 @@
+[Unit]
+# Optional
+Description=org.gnome.News
+# Optional (obviously)
+Documentation=https://wiki.gnome.org/Design/Apps/Potential/News
+
+[BusName]
+# Optional
+Name=org.gnome.News
+# Optional
+Service=org.gnome.News.service

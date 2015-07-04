@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/gnome/News/js">
+    <!-- models -->
+    <file>models/article.js</file>
+    <file>models/panel_model.js</file>
+
+    <!-- presenters -->
+    <file>main.js</file>
+    <file>presenters/panel.js</file>
+    <file>presenters/window.js</file>
+
+    <!-- utils -->
+    <file>utils/params.js</file>
+    <file>utils/util.js</file>
+  </gresource>
+
+  <!-- views -->
+  <gresource prefix="/org/gnome/News">
+    <file preprocess="xml-stripblanks">views/app-menu.ui</file>
+    <file>views/application.css</file>
+    <file preprocess="xml-stripblanks">views/main.ui</file>
+    <file preprocess="xml-stripblanks">views/no-results-page.ui</file>
+    <file preprocess="xml-stripblanks">views/panel.ui</file>
+  </gresource>
+</gresources>

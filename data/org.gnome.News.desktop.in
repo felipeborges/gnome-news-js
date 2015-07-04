@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+_Name=News
+_Comment=A feed reader application for GNOME.
+Icon=org.gnome.News
+Exec=gapplication launch org.gnome.News
+DBusActivatable=true
+StartupNotify=true
+_Keywords=gtk;gjs;gnome;feed;rss;reader;news;

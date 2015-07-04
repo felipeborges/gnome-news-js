@@ -5,7 +5,6 @@ srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
 ACLOCAL_FLAGS="${ACLOCAL_FLAGS}"
-PKG_NAME="gtk-js-app"
 
 test -f $srcdir/configure.ac || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
