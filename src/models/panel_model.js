@@ -22,6 +22,8 @@ const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
 const Lang = imports.lang;
 
+const Application = imports.main;
+
 const PanelModel = new Lang.Class({
     Name: 'PanelModel',
 
@@ -37,13 +39,16 @@ const PanelModel = new Lang.Class({
               GObject.TYPE_UINT ]);
         this.model.set_sort_column_id(Gd.MainColumns.MTIME,
                                       Gtk.SortType.DESCENDING);
+
+        Application.newManager.connect('item-added', this._onItemAdded.bind(this));
     },
 
     _addItem: function(item) {
         let iter = this.model.append();
         this.model.set(iter,
             [ 0, 1, 2, 3, 4 ],
-            [ item.id, "", "", "", item.surface ]);
+            [ item.id, item.uri, item.title,
+              item.url, item.surface ]);
     },
 
     _onItemAdded: function(manager, item) {

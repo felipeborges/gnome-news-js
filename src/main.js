@@ -29,9 +29,17 @@ const GLib = imports.gi.GLib;
 const Gtk = imports.gi.Gtk;
 const Lang = imports.lang;
 const Util = imports.utils.util;
+const Tracker = imports.gi.Tracker;
 
+const Manager = imports.models.manager;
+const Query = imports.models.query;
+const TrackerController = imports.presenters.tracker_controller;
 const Window = imports.presenters.window;
 
+let newManager = null;
+let connection = null;
+let connectionQueue = null;
+let queryBuilder = null;
 let settings = null;
 
 function initEnvironment() {
@@ -64,6 +72,18 @@ const Application = new Lang.Class({
 
     vfunc_startup: function() {
         this.parent();
+
+        // connect to Tracker
+        try {
+            connection = Tracker.SparqlConnection.get(null);
+        } catch (err) {
+            log('Unable to connect to the Tracker database: ' + err.toString());
+            return;
+        }
+
+        connectionQueue = new TrackerController.TrackerConnectionQueue();
+        queryBuilder = new Query.QueryBuilder();
+        newManager = new Manager.BaseManager();
 
         settings = new Gio.Settings({
             schema_id: 'org.gnome.News',

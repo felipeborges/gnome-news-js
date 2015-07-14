@@ -21,6 +21,8 @@ const Gtk = imports.gi.Gtk;
 const Lang = imports.lang;
 const Params = imports.utils.params;
 
+const Application = imports.main;
+const Article = imports.models.article;
 const PanelModel = imports.models.panel_model;
 
 const Panel = new Lang.Class({
@@ -43,12 +45,56 @@ const Panel = new Lang.Class({
             shadow_type: Gtk.ShadowType.NONE,
         });
         this.add_named(this.view, 'view');
-        this.set_visible_child_full('no-results', Gtk.StackTransitionType.NONE);
+        this.set_visible_child_full('view', Gtk.StackTransitionType.NONE);
         this.show_all();
+    },
+
+    _finalizeQuery: function(object, res) {
+        let cursor = null;
+
+        try {
+            cursor = object.query_finish(res);
+            cursor.next_async(null, this._onCursorNext.bind(this));
+        } catch (err) {
+            log("error " + err.toString());
+            this.set_visible_child_full('no-results', Gtk.StackTransitionType.NONE);
+        }
+    },
+
+});
+
+const NewPanel = new Lang.Class({
+    Name: 'NewPanel',
+    Extends: Panel,
+
+    _init: function() {
+        this.parent();
 
         this._model = new PanelModel.PanelModel();
-        // do that only when we got results to show
         this.view.set_model(this._model.model);
+
+        // load initial items
+        let query = Application.queryBuilder.buildFetchNewArticlesQuery(15);
+        Application.connectionQueue.add(query.sparql, null, this._finalizeQuery.bind(this));
+    },
+
+    _onCursorNext: function(cursor, res) {
+        let valid = false;
+
+        try {
+            valid = cursor.next_finish(res);
+        } catch (err) {
+            log ("err " + err.toString());
+        }
+
+        if (!valid) {
+            cursor.close();
+            return;
+        }
+
+        Application.newManager.addItem(new Article.Article(cursor));
+
+        cursor.next_async(null, this._onCursorNext.bind(this));
     },
 });
 
@@ -61,7 +107,7 @@ const MainView = new Lang.Class({
                                        vexpand: true });
         this.parent(params);
 
-        this._newPanel = new Panel();
+        this._newPanel = new NewPanel();
         this.add_titled(this._newPanel, 'new', _("New"));
 
         this._feedsPanel = new Panel();

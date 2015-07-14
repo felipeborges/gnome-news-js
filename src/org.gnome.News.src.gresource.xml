@@ -3,11 +3,14 @@
   <gresource prefix="/org/gnome/News/js">
     <!-- models -->
     <file>models/article.js</file>
+    <file>models/manager.js</file>
     <file>models/panel_model.js</file>
+    <file>models/query.js</file>
 
     <!-- presenters -->
     <file>main.js</file>
     <file>presenters/panel.js</file>
+    <file>presenters/tracker_controller.js</file>
     <file>presenters/window.js</file>
 
     <!-- utils -->

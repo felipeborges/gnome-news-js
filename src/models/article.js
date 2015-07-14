@@ -21,6 +21,8 @@ const GdkPixbuf = imports.gi.GdkPixbuf;
 const Lang = imports.lang;
 const Signals = imports.signals;
 
+const Query = imports.models.query;
+
 const Article = new Lang.Class({
     Name: 'Article',
 
@@ -28,10 +30,13 @@ const Article = new Lang.Class({
         this.id = null;
         this.uri = null;
         this.title = null;
-        this.author = null;
-        this.mtime = null;
-        this.resourceUrn = null;
-        this.image = null;
+        this.url = null;
+        this.dateCreated = null;
+        this.date = null;
+        this.isRead = null;
+        this.dateReceived = null;
+        this.downloadedTime = null;
+
         this.surface = null;
         this.content = null;
 
@@ -39,15 +44,22 @@ const Article = new Lang.Class({
     },
 
     populateFromCursor: function(cursor) {
+        this.id = cursor.get_string(Query.QueryColumns.URN)[0];
+        this.uri = cursor.get_string(Query.QueryColumns.URI)[0];
+        this.title = cursor.get_string(Query.QueryColumns.TITLE)[0];
+        this.url = cursor.get_string(Query.QueryColumns.URL)[0];
+        this.dateCreated = cursor.get_string(Query.QueryColumns.DATE_CREATED)[0];
+        this.date = cursor.get_string(Query.QueryColumns.DATE)[0];
+        this.isRead = cursor.get_string(Query.QueryColumns.IS_READ)[0];
+        this.dateReceived = cursor.get_string(Query.QueryColumns.DATE_RECEIVED)[0];
+        this.downloadedTime = cursor.get_string(Query.QueryColumns.DOWNLOADED_TIME)[0];
 
-        if (!this.image)
-            this._generateThumbnail();
+        this._generateThumbnail();
     },
 
     _generateThumbnail: function() {
-        // draw cairo surface on this.surface
-
-        this.emit('info-updated');
+        // write a private lib to draw the thumbnail on a Cairo surface
+        return;
     },
 });
 Signals.addSignalMethods(Article.prototype);
