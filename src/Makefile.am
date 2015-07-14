@@ -32,6 +32,8 @@ CLEANFILES = \
 	org.gnome.News.src.gresource \
 	$(NULL)
 
+include Makefile-lib.am
+
 install-exec-hook:
 	$(MKDIR_P) $(DESTDIR)$(bindir)
 	ln -sf $(appdir)/org.gnome.News $(DESTDIR)$(bindir)/$(PACKAGE_TARNAME)

@@ -18,6 +18,7 @@
 
 const Gdk = imports.gi.Gdk;
 const GdkPixbuf = imports.gi.GdkPixbuf;
+const GnPrivate = imports.gi.GnPrivate;
 const Lang = imports.lang;
 const Signals = imports.signals;
 
@@ -59,6 +60,7 @@ const Article = new Lang.Class({
 
     _generateThumbnail: function() {
         // write a private lib to draw the thumbnail on a Cairo surface
+        print(GnPrivate.test(42));
         return;
     },
 });
